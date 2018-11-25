@@ -1,4 +1,4 @@
-#  Github/ Maven / Spring /Spring Boot
+#  Part I ：Github/ Maven / Spring /Spring Boot
 
 ## I.Github
 
@@ -124,27 +124,66 @@ https://mvnrepository.com/
 
 #### AOP面向切片编程->类似Servlet中的监听，把程序每个部分进行切片，插入相应函数，类似DEBUG
 
+###### Spring有两种方式进行使用，其一是使用application.xml形势的配置，其二是使用扫描注解的方式进行书写
+
+```java
+@Autowired @Repository @Service @Controller @Component @Configuration @Value @Bean @Resource @PostConstruct(初始化)  @PreDestory(销毁) @Primary(首选者) @Lazy(true)(延迟初始化) @Qualifier(指定bean) @Resource @Named(与@Component功能相同，可以有值) @Inject(需要引用javax.inject.jar,与@Autowired有互换性) @Singleton(单例) @RequestMapping @Scope
+```
+
+https://blog.csdn.net/achenyuan/article/details/72786759     (注解详解)
+
+###### Spring还有各种给对象赋值的方式
+
+## IV.Spring Boot
+
+###### SpringBoot 就是简化业务逻辑之前重复的配置工作的一个综合框架
+
+### Spring Boot的使用
+
+###### 创建Maven项目
+
+http://start.spring.io/     下载并导入STS 或者直接从STS中创建Spring Starter Project
+
+#### SpringBoot相关依赖
+
+> <parent>
+> ​    <groupId>org.springframework.boot</groupId>
+> ​    <artifactId>spring-boot-starter-parent</artifactId>
+> ​    <version>1.5.1.RELEASE</version>
+> </parent>
+> <dependencies>
+> ​    <dependency>
+> ​        <groupId>org.springframework.boot</groupId>
+> ​        <artifactId>spring-boot-starter-web</artifactId>
+> ​    </dependency>
+>
+> <dependencies>
+
+##### 路径下的配置文件读取优先级（从上到下）
+
+###### fiel：./config/
+
+###### fiel：./   
+
+###### :/src/main/resources/config/     classpath:/config/
+
+###### :src/main/resources/(推荐使用） classpath:/
+
+###### 使用方法比Spring简单
 
 
 
+# Part II：Spring Boot Project
 
+### 功能：
 
+###### 修改Banner图
 
+###### Application根据配置文件修改属性
 
+###### 使用注解的方式注入所有的实体类数据
 
-
-
-
-
-
-
-## IV	.Spring Boot
-
-
-
-
-
-
+###### web应用
 
 
 
