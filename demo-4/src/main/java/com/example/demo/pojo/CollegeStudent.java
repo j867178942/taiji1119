@@ -17,6 +17,7 @@ import lombok.ToString;
 @PropertySource(value="classpath:application.yml")
 @ConfigurationProperties(prefix="CollegeStudent")
 @Order(2)
+@Profile("collegeStudent")
 public class CollegeStudent implements Student {
 @Value("name")
 private String name;

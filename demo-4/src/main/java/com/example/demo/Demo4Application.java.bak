@@ -33,6 +33,7 @@ public class Demo4Application {
 	//学生接口，有两个实现，一个大学生一个小学生，其中有学习的方法
 	
 	@Autowired
+	private Pupil stu;
 	
 	@RequestMapping("/hello")
 	public String hello() {
