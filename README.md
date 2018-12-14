@@ -1,3 +1,20 @@
+
+#  作业地址表
+#  spring-thymeleaf：https://github.com/j867178942/taiji1119/tree/master/demo-9
+
+#  spring-jpa：https://github.com/j867178942/taiji1119/tree/master/Spring_JPA
+#  spring-jpa：https://github.com/j867178942/taiji1119/tree/master/pojo
+
+# Oauth2:https://github.com/j867178942/taiji1119/tree/master/Oauth2-5
+
+# redis: https://github.com/j867178942/taiji1119/tree/master/redisdemo-3
+
+# mongDB:https://github.com/j867178942/taiji1119/tree/master/springboot_mongo
+
+  
+
+
+
 #  Part I ：Github/ Maven / Spring /Spring Boot
 
 ## I.Github
