@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8"/>
+<title>Insert title here</title>
+</head>
+<script th:inline="javascript">
+</script>
+<body>
+<span th:text="${flag}"></span>
+<form th:action="${(flag==1)?('addUser2'):('editUser2')}" method="post" >
+<table>
+<tr>
+	<td>姓名</td>
+	<td><input type="text" th:field="${user.name}" /></td>
+</tr>
+<tr>
+	<td>电话</td>
+	<td><input type="text" th:field="${user.phoneNumber}" /></td>
+</tr>
+<tr>
+	<td>url</td>
+	<td><input type="text" th:field="${user.url}" /></td>
+</tr>
+</table>
+<input type="submit" value="保存" />
+</form>
+</body>
+</html>

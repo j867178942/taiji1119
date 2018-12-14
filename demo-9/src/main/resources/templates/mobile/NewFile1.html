@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes"/>
+<title>Insert title here</title>
+<script  th:src="@{https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js}">
+</script>
+<script th:inline="javascript">
+/* $(document).ready(function(){
+		 $(".button1").click(function(){
+			var age = this.parent().parent().children()[2].html();
+			alert("删除操作" + age);
+			$.ajax(
+					url: "delUser",
+					data:age,
+					success: function(result){
+					alert("数据: \n" + result);
+			})
+		}); 
+	}); */
+/* $.(function(){
+	alert("jquery");
+	$(".button1").click(function(){
+		$.ajax({
+			url:"/addUser1",
+			method:"post",
+			success:function(result){
+				alert("45566666");
+		}});
+	});
+}); */
+
+$(document).ready(function(){
+	$(".button1").click(function(){
+		$.ajax({
+			url:"/addUser1",
+			method:"post"
+		})
+	})
+});
+</script>
+</head>
+<body>
+<h1>PC端</h1>
+<table border="1">
+<tr>
+<th>姓名</th>
+<th>年龄</th>
+<th>电话</th>
+<th>url</th>
+<th>操作</th>
+</tr>
+<tr th:each="user: ${userList}">
+<td th:text="${user.name}"></td>
+<td th:text="${user.age}"></td>
+<td th:text="${user.phoneNumber}"></td>
+<td th:text="${user.url}"></td>
+<td><a th:href="@{/delUser(age=${user.age})}">删除</a></td>
+<td><a th:href="@{/editUser1(age=${user.age})}">编辑</a></td>
+<td><button class="button1">删除2</button></td>
+</tr>
+</table>
+<a href="/addUser1">新增用户</a>
+</body>
+</html>

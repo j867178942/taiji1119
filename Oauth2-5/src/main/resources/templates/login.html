@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta content="text/html;charset=UTF-8" />
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+	
+</script>
+<title>登录页面</title>
+<link rel="stylesheet" th:href="@{css/bootstrap.min.css}" />
+<style type="text/css">
+body {
+	padding-top: 50px;
+}
+
+.starter-template {
+	padding: 40px 15px;
+	text-align: center;
+}
+</style>
+</head>
+<body>
+
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">Spring Security演示</a>
+			</div>
+			<div id="navbar" class="collapse navbar-collapse">
+				<ul class="nav navbar-nav">
+					<li>
+						<a th:href="@{/}"> 首页 </a>
+					</li>
+
+				</ul>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	<div class="container">
+
+		<div class="starter-template">
+			<p th:if="${param.logout}" class="bg-warning">已成功注销</p>
+			<!-- 1 -->
+			<p th:if="${param.error}" class="bg-danger">有错误，请重试</p>
+			<!-- 2 -->
+			<div id="loginuap">
+				<h2>使用账号密码登录</h2>
+				<form name="form" th:action="@{/login}" action="/login" method="POST">
+					<!-- 3 -->
+					<div class="form-group">
+						<label for="username">账号</label>
+						<input type="text" class="form-control" name="username" value="" placeholder="账号" />
+					</div>
+					<div class="form-group">
+						<label for="password">密码</label>
+						<input type="password" class="form-control" name="password" placeholder="密码" />
+					</div>
+					<input type="submit" id="login" value="登陆" class="btn btn-primary" />
+				</form>
+			</div>
+			<div id="loginphone">
+				<h2>使用手机验证码登录</h2>
+				<form name="form" th:action="@{/login}" action="/login" method="POST">
+					<!-- 3 -->
+					<div class="form-group">
+						<label for="username">手机号码</label>
+						<input id="phoneNum" type="tel" class="form-control" name="username" value="" placeholder="手机号码" />
+					</div>
+					<div class="form-group">
+						<label for="password">验证码</label>
+						<input type="password" class="form-control" name="password" placeholder="验证码" />
+					</div>
+					<input type="submit" id="login" value="登陆" class="btn btn-primary" />
+					<input type="button" id="getcode" value="获取验证码" class="btn btn-primary" onclick="getCode(this)" />
+				</form>
+			</div>
+			<div align="right">
+				<div class="btn-group">
+					<a href="#" class="btn btn-info btn-sm" onclick="changetouap()">账号登陆</a>
+					<a href="#" class="btn btn-info btn-sm" onclick="changetophone()">手机登陆</a>
+					<a href="/login/github" class="btn btn-info btn-sm">Github登陆</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$("#loginphone").hide();
+
+		function changetophone() {
+			$("#loginuap").hide();
+			$("#loginphone").show();
+		}
+
+		function changetouap() {
+			$("#loginuap").show();
+			$("#loginphone").hide();
+		}
+
+		function getCode(val) {
+			var phoneNum = $("#phoneNum").val();
+			if (phoneNum != "") {
+				// alert(phoneNum);
+				$.ajax({
+					url : "/getCode",
+					data : {
+						phoneNum : phoneNum
+					},
+					type : "Get"
+				});
+				settime(val);
+			} else {
+				alert("未输入")
+			}
+		}
+
+		var countdown = 60;
+		function settime(val) {
+			if (countdown == 0) {
+				val.removeAttribute("disabled");
+				val.value = "获取验证码";
+				countdown = 60;
+			} else {
+				val.setAttribute("disabled", true);
+				val.value = "重新发送(" + countdown + ")";
+				countdown--;
+				setTimeout(function() {
+					settime(val)
+				}, 1000)
+			}
+
+		}
+	</script>
+</body>
+</html>

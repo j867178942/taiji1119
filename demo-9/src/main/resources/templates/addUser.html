@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" name="viewport"
+	content="width=device-width, initial-scale=1.0, minimum-scale=0.5, maximum-scale=2.0, user-scalable=yes" />
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+	crossorigin="anonymous" />
+	
+	
+	
+	
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+	
+</script>
+<script th:inline="javascript">
+	function isPoneAvailable(phoneNumber) {
+		var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+		if (!myreg.test(phoneNumber)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	function email(email) {
+		var myreg = /^[1][3,4,5,7,8][0-9]{9}$/;
+		if (!myreg.test(email)) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	function check() {
+		var userName = $("#name").val();
+		var phoneNumber = $("#phoneNumber").val();
+		var url = $("#url").val();
+		alert(userName + "phnumber" + phoneNumber + "url" + url);
+		if (!isPoneAvailable(phoneNumber)) {
+			alert("请输入正确的电话号码");
+			return false;
+		} else if (!email(phoneNumber)) {
+			alert("请输入正确的邮箱");
+			return false;
+		} else {
+			return true;
+		}
+	}
+</script>
+</head>
+<body>
+
+	<div class="container">
+		<form th:object="${user}" enctype="multipart/form-data"
+			th:action="${(flag==1)?('addUser2'):('editUser2')}" method="post">
+			<img style="width: 100px; height: 100px;"
+				th:src="@{'/image/' + ${user.url}}" /> <br /> <br />
+			<div class="form-group">
+				<label for="exampleInputFile">文件上传</label> <input type="file"
+					id="exampleInputFile" name="file" />
+				<p class="help-block">文件上传</p>
+			</div>
+			<!-- <input type="submit" th:onclick="return check(this.form)" th:id="button2" th:value="保存" /> -->
+			<div class="form-group">
+				<label for="qwe">年龄</label> <input type="text" class="form-control"
+					id="qwe" placeholder="age" th:field="${user.name}" />
+			</div>
+			<div class="form-group">
+				<label for="qwe">电话</label> <input type="text" class="form-control"
+					id="qwe" placeholder="phonenumber" th:field="${user.phoneNumber}" />
+			</div>
+			<input class="btn" type="submit" th:id="button2" th:value="保存" />
+		</form>
+	</div>
+</body>
+</html>
